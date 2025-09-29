@@ -1,103 +1,73 @@
-import Image from "next/image";
+import { MessageCircle } from "lucide-react";
+import { Vote } from "lucide-react";
+import Link from "next/link";
 
 export default function Home() {
   return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+    <main className="min-h-screen">
+      <section className="relative text-center py-20 px-6">
+        <div className="absolute inset-0 bg-gradient-to-r from-pale-green to-light-purple/60"></div>
+        <h1 className="relative text-5xl lg:text-6xl font-bold text-dark-purple leading-tight">
+          Help Shape Our{" "}
+          <span className="bg-gradient-to-r from-purple-950 to-green-700 bg-clip-text text-transparent">
+            Neighborhood
+          </span>
+        </h1>
+        <p className="relative mt-6 text-xl text-gray-600 max-w-2xl mx-auto">
+          Share your thoughts, highlight issues, and vote for what matters most
+          in our community.
+        </p>
+      </section>
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+      <section className="py-20 bg-white text-center px-6">
+        <h2 className="text-4xl font-bold text-gray-900 mb-4">
+          Ready to Make a Difference?
+        </h2>
+        <p className="text-xl text-gray-600 max-w-2xl mx-auto mb-12">
+          by following these simple steps you can help make your neighborhood a
+          better place.
+        </p>
+
+        <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+          <div className="p-8 bg-gradient-to-br from-pale-green to-green-50 rounded-2xl border border-blue-100 hover:shadow-xl transition">
+            <div className="flex items-center gap-2 mb-4 justify-center">
+              <MessageCircle className="w-6 h-6 text-green-900" />
+              <h3 className="text-2xl font-bold text-green-900">
+                Share Your Voice
+              </h3>
+            </div>
+            <p className="text-gray-600 mb-6">
+              Report a problem or suggest improvements in your neighborhood.
+              Join others in finding solutions that matter most.
+            </p>
+            <Link
+              href="/ideas"
+              className="text-green-900 font-semibold hover:text-green-700"
+            >
+              Report & Improve →
+            </Link>
+          </div>
+
+          <div className="p-8 bg-gradient-to-br from-purple-50 to-pink-50 rounded-2xl border border-purple-100 hover:shadow-xl transition">
+            <div className="flex items-center gap-2 mb-4 justify-center">
+              <Vote className="w-6 h-6 text-purple-900" />
+              <h3 className="text-2xl font-bold text-purple-900">
+                Join Polls & Surveys
+              </h3>
+            </div>
+            <p className="text-gray-600 mb-6">
+              Vote on shared ideas, take part in surveys, and help set community
+              priorities together.
+            </p>
+            <Link
+              href="/poll"
+              className="text-purple-900 font-semibold hover:text-purple-700"
+            >
+              Vote Now →
+            </Link>
+          </div>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+      </section>
+    </main>
   );
 }
