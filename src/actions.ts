@@ -1,6 +1,6 @@
 "use server";
 
-import { addProblem, addSolution, addVoteToPoll } from "./queries";
+import { addProblem, addSolution, addVoteToPoll, deleteProblem, deleteSolution } from "./queries";
 import { revalidatePath, revalidateTag } from "next/cache";
 
 
@@ -54,3 +54,27 @@ export async function addVoteAction(initialState: Message, fd: FormData) {
 }
 
 
+// for admin only 
+export async function deleteProblemAction(initialState: Message, fd: FormData) {
+  const problemId = fd.get("problemId") as string;
+  if (!problemId) {
+    return { type: "error", message: "Missing problem ID" };
+  }
+  await deleteProblem(problemId);
+  revalidatePath('/ideas');
+  revalidateTag('problems');
+  return { type: "success", message: "Problem deleted successfully!" };
+}
+
+
+export async function deleteSolutionAction(initialState: Message, fd: FormData) {
+  const problemId = fd.get("problemId") as string;
+  const solutionId = fd.get("solutionId") as string;
+  if (!problemId || !solutionId) {
+    return { type: "error", message: "Missing problem or solution ID" };
+  }
+  await deleteSolution(problemId, solutionId);
+  revalidatePath('/ideas');
+  revalidateTag('problems');
+  return { type: "success", message: "Solution deleted successfully!" };
+}

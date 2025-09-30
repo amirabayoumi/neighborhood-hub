@@ -1,3 +1,4 @@
+"use client";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
@@ -5,6 +6,7 @@ import AddSuggestion from "./AddSuggestion";
 import SuggestionList from "./SuggestionList";
 import { ProblemProps } from "../types";
 import { MessageSquare, Lightbulb } from "lucide-react";
+import DeleteProblem from "./adminComponents/DeleteProblem";
 
 const Problem = ({ problem }: ProblemProps) => {
   const solutionCount = problem.solutions.length;
@@ -25,6 +27,7 @@ const Problem = ({ problem }: ProblemProps) => {
               <MessageSquare className="w-5 h-5" />
               {solutionCount}
             </Badge>
+            <DeleteProblem problemId={problem.id} />
             <AddSuggestion problemId={problem.id} />
           </div>
         </div>
@@ -34,7 +37,7 @@ const Problem = ({ problem }: ProblemProps) => {
         <Separator />
 
         {solutionCount > 0 ? (
-          <SuggestionList solutions={problem.solutions} />
+          <SuggestionList solutions={problem.solutions} problemId={problem.id} />
         ) : (
           <div className="text-center py-8 text-gray-500 flex flex-col items-center gap-2">
             <Lightbulb className="w-6 h-6 text-yellow-400" />

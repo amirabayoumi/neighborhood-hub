@@ -31,7 +31,7 @@ export type Solution = {
 
 };
 
-export type SuggestionListProps = { solutions: Solution[] };
+export type SuggestionListProps = { solutions: Solution[], problemId: string };
 
 
 
