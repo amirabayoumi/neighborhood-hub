@@ -11,7 +11,7 @@ export async function addProblemAction(initialState: Message, fd: FormData) {
   const title = fd.get("title") as string;
     if (title && title.trim().length > 0) {
       await addProblem(title);
-      revalidatePath('/survey');
+      revalidatePath('/ideas');
       revalidateTag('problems');
       return { type: "success", message: "Thank you for joining us!, your suggestion has been submitted." };
     }
@@ -25,7 +25,7 @@ export async function addSolutionAction(initialState: Message, fd: FormData) {
     return { type: "error", message: "Please enter your solution." };
   }
   await addSolution(problemId, text);
-  revalidatePath('/survey');
+  revalidatePath('/ideas');
   revalidateTag('problems');
   return { type: "success", message: "Solution added successfully!" };
 }
