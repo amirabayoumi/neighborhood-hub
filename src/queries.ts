@@ -2,13 +2,14 @@ import { getDb } from "./connect";
 import { ObjectId } from "mongodb";
 import { revalidateTag } from "next/cache";
 import { randomUUID } from "crypto";
+import { Problem } from "./types";
 
 
 export async function getProblems() {
   const db = await getDb();
   const collection = db.collection("problems");
   const problems = await collection.find({}).toArray();
-
+  
   return problems.map((problem) => {
     const totalVotes = problem.solutions.reduce(
       (sum: number, s: { votes: number }) => sum + s.votes,
@@ -62,6 +63,28 @@ export async function addSolution(problemId: string, text: string) {
 
 
 
+export  async function deleteProblem(problemId: string) {
+  const db = await getDb();
+  const collection = db.collection("problems");
+
+  await collection.deleteOne({ _id: new ObjectId(problemId) });
+
+  revalidateTag("problems");
+}
+
+
+
+export async function deleteSolution(problemId: string, solutionId: string) {
+  const db = await getDb();
+  const collection = db.collection<Problem>("problems");
+
+  await collection.updateOne(
+    { _id: new ObjectId(problemId) },
+    { $pull: { solutions: { id: solutionId } } }
+  );
+
+  revalidateTag("problems");
+}
 
 
 //add vote to polls options
